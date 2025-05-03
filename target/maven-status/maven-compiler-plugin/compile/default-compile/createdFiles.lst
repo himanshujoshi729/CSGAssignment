@@ -1,0 +1,8 @@
+com\csgi\wordanalyzer\input\InputValidator.class
+com\csgi\wordanalyzer\service\CountWordsService.class
+com\csgi\wordanalyzer\input\InputFileReader.class
+com\csgi\wordanalyzer\rules\WordRule.class
+com\csgi\wordanalyzer\exception\CSGIException.class
+com\csgi\wordanalyzer\rules\WordLengthRule.class
+com\csgi\wordanalyzer\CountWordsApp.class
+com\csgi\wordanalyzer\rules\WordStartsWithMValidator.class
