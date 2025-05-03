@@ -1,4 +1,4 @@
-**Word Length Checker**
+**Word Analyzer**
 
 This project is designed to analyze a list of words and apply certain rules for counting and filtering based on the word's length. Specifically, it includes functionality to:
 Count words that start with the letter 'M' or 'm'.
