@@ -1,45 +1,44 @@
 package com.csgi.wordanalyzer;
 
-import com.csgi.wordanalyzer.exception.CSGIException;
-import com.csgi.wordanalyzer.input.InputFileReader;
-import com.csgi.wordanalyzer.input.InputValidator;
-import com.csgi.wordanalyzer.rules.WordLengthRule;
-import com.csgi.wordanalyzer.rules.WordStartsWithMValidator;
-import com.csgi.wordanalyzer.service.CountWordsService;
 
-import java.io.IOException;
+import com.csgi.wordanalyzer.exception.CSGIException;
+import com.csgi.wordanalyzer.rules.LongerThanFiveRule;
+import com.csgi.wordanalyzer.rules.WordStartsWithMValidator;
+import com.csgi.wordanalyzer.service.WordProcessor;
+
+import java.util.Arrays;
 import java.util.List;
+
+/**
+ * The {@code CountWordsApp} class is the entry point of the application.
+ * <p>
+ * This application processes a list of words and applies a set of dynamic business rules
+ * such as:
+ * <ul>
+ *     <li>Counting how many words start with the letter 'M' or 'm'</li>
+ *     <li>Listing all words longer than 5 characters</li>
+ * </ul>
+ * </p>
+ * <p>
+ * The rules are designed to be pluggable via the {@link WordProcessor} class.
+ * New rules can be added with minimal changes to this code.
+ * </p>
+ *
+ * @author Himanshu
+ * @version 1.0
+ */
+
 
 public class CountWordsApp {
 
-    public static void main(String[] args) throws CSGIException {
-        try {
-            // Step 1: Read input file
-            InputFileReader reader = new InputFileReader();
-            List<String> inputWords = null;
-			try {
-				inputWords = reader.readLines("input.txt");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+    	public static void main(String[] args) throws CSGIException {
+            List<String> words = Arrays.asList(
+                    "Monkey", "apple", "Mountain", "ball", "Marble", "house", "Elephant", "Mango"
+            );
 
-            // Step 2: Validate input words
-            InputValidator validator = new InputValidator();
-            validator.validateWords(inputWords);
-
-            // Step 3: Use the service with the validated words
-            CountWordsService service = new CountWordsService(inputWords);
-
-            // Rule 1: Count words that start with M or m
-            long countMWords = service.countWordsMatchingRule(new WordStartsWithMValidator());
-            System.out.println("Number of words starting with 'M' or 'm': " + countMWords);
-
-            // Rule 2: Get all words longer than 5 characters
-            List<String> longWords = service.getWordsMatchingRule(new WordLengthRule());
-            System.out.println("Words longer than 5 characters: " + longWords);
-
-        } catch (CSGIException e) {
-            throw new CSGIException("Error occurred: " + e.getMessage());
+            WordProcessor processor = new WordProcessor();
+            processor.addRule(new WordStartsWithMValidator());
+            processor.addRule(new LongerThanFiveRule());
+            processor.processWords(words);
         }
-    }
 }

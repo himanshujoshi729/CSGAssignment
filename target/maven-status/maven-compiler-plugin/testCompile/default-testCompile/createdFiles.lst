@@ -1,1 +1,2 @@
-com\csgi\wordanalyzer\test\CountWordsServiceTest.class
+com\csgi\wordanalyzer\test\LongerThanFiveRuleTest.class
+com\csgi\wordanalyzer\test\WordStartsWithMValidatorTest.class

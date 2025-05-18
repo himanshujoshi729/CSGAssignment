@@ -1,38 +1,46 @@
 package com.csgi.wordanalyzer.rules;
 
+import java.util.List;
+
 import com.csgi.wordanalyzer.exception.CSGIException;
 
 /**
- * Functional interface representing a rule for validating words.
+ * {@code WordRule} is a contract for implementing business rules that operate
+ * on a list of words.
  * <p>
- * This interface defines a contract for any word validation rule. Implementing classes must define
- * the validation logic within the {@link #test(String)} method, which accepts a word (String) and returns a boolean.
+ * Implementations of this interface should define logic for applying a specific rule
+ * to a list of words via the {@link #apply(List)} method, and provide output or
+ * reporting logic via the {@link #report()} method.
  * </p>
  * <p>
- * The validation can throw a {@link CSGIException} if the word doesn't meet the validation criteria, 
- * allowing for custom error handling within the implementation.
+ * This design allows multiple rules to be composed and applied dynamically, supporting
+ * scalability and maintainability of rule-based word processing applications.
  * </p>
- * <p>
- * As this is a functional interface, it can be used with lambda expressions and method references.
- * </p>
- * 
- * @author HimanshuJ
- * @see CSGIException
+ *
+ * <p><b>Typical usage:</b></p>
+ * <pre>{@code
+ * WordRule rule = new WordStartsWithMValidator();
+ * rule.apply(words);
+ * rule.report();
+ * }</pre>
+ *
+ * @author Himanshu
+ * @version 1.0
  */
-@FunctionalInterface
 public interface WordRule {
-
-    /**
-     * Tests whether the given word satisfies the validation rule.
-     * <p>
-     * This method should contain the specific validation logic for a word. It returns true if the word is valid
-     * according to the rule, and false otherwise. If the word is not valid, a {@link CSGIException} can be thrown
-     * to indicate the specific error condition.
-     * </p>
-     * 
-     * @param word the word to be validated
-     * @return true if the word satisfies the rule, false otherwise
-     * @throws CSGIException if the word does not meet the validation criteria
+    
+	 /**
+     * Applies the rule to the given list of words.
+     *
+     * @param words the list of words to evaluate
+     * @throws CSGIException if rule processing encounters an error
      */
-    boolean test(String word) throws CSGIException;
+    void apply(List<String> words) throws CSGIException;
+    
+    /**
+     * Prints or logs the result of the rule evaluation.
+     *
+     * @throws CSGIException if reporting fails
+     */
+	void report() throws CSGIException;
 }

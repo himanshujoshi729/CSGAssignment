@@ -1,8 +1,6 @@
 C:\Assignment\word-analyzer\src\main\java\com\csgi\wordanalyzer\CountWordsApp.java
 C:\Assignment\word-analyzer\src\main\java\com\csgi\wordanalyzer\exception\CSGIException.java
-C:\Assignment\word-analyzer\src\main\java\com\csgi\wordanalyzer\input\InputFileReader.java
-C:\Assignment\word-analyzer\src\main\java\com\csgi\wordanalyzer\input\InputValidator.java
-C:\Assignment\word-analyzer\src\main\java\com\csgi\wordanalyzer\rules\WordLengthRule.java
+C:\Assignment\word-analyzer\src\main\java\com\csgi\wordanalyzer\rules\LongerThanFiveRule.java
 C:\Assignment\word-analyzer\src\main\java\com\csgi\wordanalyzer\rules\WordRule.java
 C:\Assignment\word-analyzer\src\main\java\com\csgi\wordanalyzer\rules\WordStartsWithMValidator.java
-C:\Assignment\word-analyzer\src\main\java\com\csgi\wordanalyzer\service\CountWordsService.java
+C:\Assignment\word-analyzer\src\main\java\com\csgi\wordanalyzer\service\WordProcessor.java
